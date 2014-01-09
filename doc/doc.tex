@@ -1,0 +1,118 @@
+%coding:utf-8
+\documentclass[10pt, fleqn]{article}
+
+\usepackage{layout}
+
+\title{Lösung Servish Rätsel 1 -- Sam Servish im Fahrstuhl}
+\author{Daniel Winz}
+
+\begin{document}
+\vfill
+\maketitle
+\vfill
+\tableofcontents
+\vfill
+\newpage
+
+\section{Aufgabenstellung}
+\subsection*{SERVISH RÄTSEL}
+\subsubsection*{Turniermodus}
+Der Gewinner erhält 50% des Betrages, der Zweitbeste 30% und der drittbeste 20%. 
+
+\subsubsection*{Bewerbung möglich bis}
+12. Januar 2014 \\
+17:00 Uhr
+
+\subsubsection*{Rücktritt möglich bis}
+13. Januar 2014 \\
+17:00 Uhr
+
+\subsubsection*{Projektabschluss}
+15. Januar 2014 \\
+17:00 Uhr
+
+\subsubsection*{Rubrik}
+Lifestyle \& Unterhaltung / Andere
+
+\subsubsection*{Zusammenfassung}
+Für alle die gerne Rätsel lösen habe ich genau das Richtige! Ab sofort stelle 
+ich euch alle zwei Wochen ein neues kniffliges Rätsel aus den 
+unterschiedlichsten Bereichen. Mit diesem Beitrag gehts ab heute los!
+
+\subsubsection*{Beschreibung}
+Löst das Rätsel und sichert euch die Möglichkeit auf 400 Servish Points. Die 
+könnt ihr im Shop gegen tolle Prämien eintauschen.
+
+Bewerbt euch für dieses "'Rätsel"' und reicht eure Lösung erst ein, nachdem Sam 
+euch beauftragt hat. Ansonsten ist eure Lösung für alle anderen Teilnehmer 
+ersichtlich. Der Auftrag wird im Turniermodus durchgeführt. Informationen dazu 
+findet ihr im Hilfebereich.
+
+Und nun zum Rätsel!
+
+Zeiterfassung im Fahrstuhl
+Sam Servish arbeitet in einem Appartementhaus und bedient dort den Fahrstuhl. 
+Da es sich um ein sehr altes Haus handelt und der Fahrstuhl niemals erneuert 
+wurde, muss Sam seine Arbeitszeit mit einer alten Stechuhr im Inneren des 
+Fahrstuhls registrieren. Diese Stechuhr besteht aus einer alten Uhr mit einem 
+Pendel. Egal ob der Fahrstuhl nach oben oder nach unten fährt, die 
+Beschleunigungen des Fahrstuhls sind völlig identisch (kleiner als die 
+Gravitationsbeschleunigung g), gleichmässig und konstant. Wenn Sam im 
+Stundenlohn angestellt ist, erhält er dann zu viel oder zu wenig?
+
+Viel Spass beim Lösen!
+Euer Sam Servish
+
+\subsubsection*{Projektowner}
+Sam Servish 
+
+\subsubsection*{Eingetragen am}
+03. Januar 2014 
+
+\newpage
+
+\section{Theoretische Betrachtung}
+Die Schwingungsfrequenz eines Pendels kann mit folgender Formel berechnet 
+werden: 
+\[ f_1 = \frac{1}{2 \pi} \cdot \sqrt{\frac{m \cdot g \cdot d}{I_s}} \]
+Da in diesem Fall $g$ variiert kann obige Formel wie folgt ergänzt werden: 
+\[ f_2 
+= \frac{1}{2 \pi} \cdot \sqrt{\frac{m \cdot (g + \Delta g) \cdot d}{I_s}} \]
+Die mittlere Frequenz während des Anfahrens und des Abbremsens ist dann: 
+\[ f_2 
+= \frac{1}{2 \pi} \cdot \frac{\sqrt{\frac{m \cdot (g + \Delta g) \cdot d}{I_s}} 
++ \sqrt{\frac{m \cdot (g - \Delta g) \cdot d}{I_s}}}{2} \]
+\[ f_2 
+= \frac{1}{4 \pi} \cdot \sqrt{\frac{m \cdot d}{I_s}} \cdot 
+\left(\sqrt{g + \Delta g} + \sqrt{g - \Delta g}\right) \]
+Für die Entscheidung, ob Sam Servish zuviel oder zu wenig erhält, ist nur die 
+Differenz einer nicht bewegten Uhr und der Uhr im Fahrstuhl relevant. 
+\[ \frac{f_2}{f_1} 
+= \frac{\frac{1}{4 \pi} \cdot \sqrt{\frac{m \cdot d}{I_s}} \cdot 
+\left(\sqrt{g + \Delta g} + \sqrt{g - \Delta g}\right)}
+{\frac{1}{2 \pi} \cdot \sqrt{\frac{m \cdot g \cdot d}{I_s}}} \]
+\[ \frac{f_2}{f_1} = \frac{\sqrt{g + \Delta g} + \sqrt{g - \Delta g}}
+{2 \cdot \sqrt{g}} \]
+Die Funktion von $\sqrt{x}$ ist konkav, bzw. rechtsgekrümmt. Daher hat eine
+Änderung von $x$ in positiver Richtung einen kleineren Einfluss als eine gleich 
+grosse Änderung in negativer Richtung. \\
+$\rightarrow$ Die Uhr im Fahrstuhl läuft langsamer als eine nicht bewegte Uhr.\\
+$\rightarrow$ Sam Servish erhält zu wenig, wenn er im Stundenlohn angestellt 
+ist. 
+
+\section{Lösung mit konkretem Beispiel}
+Für das folgende Zahlenbeispiel werden folgende Annahmen getroffen: 
+\begin{itemize}
+  \item $g = 9.81 \frac{m}{s^2}$ 
+  \item $\Delta g = 1 \frac{m}{s^2}$ 
+  \item Der Fahrstuhl wird zu jedem Zeitpunkt entweder beschleunigt oder 
+        abgebremst. 
+\end{itemize}
+\[ \frac{f_2}{f_1} = \frac{\sqrt{g + \Delta g} + \sqrt{g - \Delta g}}
+{2 \cdot \sqrt{g}} = \frac{\sqrt{9.81\frac{m}{s^2} + 1 \frac{m}{s^2}} 
++ \sqrt{9.81\frac{m}{s^2} - 1 \frac{m}{s^2}}}
+{2 \cdot \sqrt{9.81 \frac{m}{s^2}}} = \underline{\underline{0.998697}} \]
+Bei einer Beschleunigung von $\pm 1 \frac{m}{s^2}$ läuft die Uhr im Fahrstuhl 
+gegenüber einer nicht bewegten Uhr um 0.13 \% langsamer. 
+
+\end{document}
