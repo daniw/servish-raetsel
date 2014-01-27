@@ -69,18 +69,86 @@ Sam Servish
 \newpage
 
 \section{Lösungsansätze}
+Aus der Aufgabenstellung sind vier Variabeln gesucht, aber nur zwei Gleichungen 
+gegeben: 
+\[ a + b + c + d = 7.77 \]
+\[ a \cdot b \cdot c \cdot d = 7.77 \]
+\[ 100 \cdot a \in \mathbb{N} \qquad 100 \cdot b \in \mathbb{N} \qquad 
+100 \cdot c \in \mathbb{N} \qquad 100 \cdot d \in \mathbb{N} \]
 Die Lösung wird mit dem Rechner gesucht. Der dazu benutzte Algorithmus wird 
 dabei Schritt für Schritt verbessert. Als Programmiersprache wird Python 
-verwendet. 
+verwendet. Um die Berechnungen mit ganzzahlen durchführen zu können, werden 
+die Preise in Rappen berechnet. Das führt jedoch dazu, dass die Multiplikation 
+der Zahlen einen um den Faktor $10^8$ grösseren Wert $(777000000)$ ergibt, da 
+jeder Faktor mit $100$ multipliziert ist. 
+\[ i + j + k + l = 777 \]
+\[ i \cdot j \cdot k \cdot l = 777000000 \]
+\[ i \in \mathbb{N} \qquad j \in \mathbb{N} \qquad 
+k \in \mathbb{N} \qquad l \in \mathbb{N} \]
 
 \subsection{Bruteforce}
+Zunächst werden für alle vier Produkte alle Möglichkeiten ausprobiert. Die 
+Variabeln \verb!i!, \verb!j!, \verb!k! und \verb!l! entsprechen dabei den 
+Preisen der einzelnen Produkte. \\
+Mit den vier \verb!for! Schleifen werden alle vier Variebeln durchiteriert. 
+Mit den \verb!if! Verzweigungen wird zuerst das Produkt und anschliessend die 
+Summe der Variabeln überprüft. Wenn beide korrekt sind, wird das Resultat 
+mit der Funktion \verb!printresult! ausgegeben. 
+\lstinputlisting{../source/raetsel_1.py}
 
 \subsection{Ein bisschen Algebra}
+Bei obigem Algorithmus wird jede Kombination überprüft. Mit den obigen 
+Gleichungen kann jedoch eine der Variabeln eliminiert werden. 
+\[ l = 777 - i - j - k \]
+\[ i \cdot j \cdot k \cdot (777 - i - j - k) = 777000000 \]
+Damit kann eine der Schleifen weggelassen und \verb!l! direkt berechnet werden. 
+\lstinputlisting{../source/raetsel_2.py}
 
-\subsection{Grenzen sinnvoll setzen}
+\subsection{Grenzen sinnvoll nutzen}
+Die kleinste der Zahlen kann höchstens ein Viertel der Summe sein. Daher muss 
+eine der Variebeln nur bis da hin iteriert werden. Von den übrigen Zahlen muss 
+die Kleinste kleiner ale ein Drittel der Summe sein. Von den übrigen beiden 
+Zahlen darf die Kleinere höchstens halb so gross wie die Hälfte Sein. Mit 
+diesen Regeln kann der Algorithmus weiter optimiert werden. 
+\lstinputlisting{../source/raetsel_3.py}
 
 \subsection{Teiler}
+Der grösste Teiler der Zahl $777000000$ ist $37$. Eine der Variabeln kann nun 
+in Schritten von 37 iteriert werden. 
+\lstinputlisting{../source/raetsel_4.py}
 
 \subsection{Primzahlzerlegung}
+Ein komplett anderer Ansatz basiert auf der Primzahlzerlegung. Die Zahl 
+$777000000$ ist aus den folgenden Primzahlen zusammengesetzt: 
+\[ 777000000 = 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 3 
+\cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 7 \cdot 35 \]
+
+\lstinputlisting{../source/raetsel_5.py}
+
+\section{Resultate}
+Das Resultat aller Algorithmen sind die Zahlen \verb!80!, \verb!125!, 
+\verb!222! und \verb!350! in verschiedenen Reihenfolgen. 
+Die einzelnen Produkte kosten also CHF 0.80, CHF 1.25, CHF 2.22 und CHF 3.50. 
+Sowohl die Summe als auch das Produkt dieser Werte ergibt 7.77 CHF. 
+\clearpage
+\begin{appendices}
+  \pagenumbering{roman}
+  \section{Listings}
+
+  \subsection{Bruteforce}
+  \lstinputlisting{../source/result_1.txt}
+
+  \subsection{Ein bisschen Algebra}
+  \lstinputlisting{../source/result_2.txt}
+
+  \subsection{Grenzen sinnvoll nutzen}
+  \lstinputlisting{../source/result_3.txt}
+
+  \subsection{Teiler}
+  \lstinputlisting{../source/result_4.txt}
+
+  \subsection{Primzahlzerlegung}
+  
+\end{appendices}
 
 \end{document}
