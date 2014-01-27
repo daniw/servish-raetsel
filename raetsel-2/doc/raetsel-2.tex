@@ -7,11 +7,9 @@
 \author{Daniel Winz}
 
 \begin{document}
-\vfill
 \maketitle
-\vfill
+\newpage
 \tableofcontents
-\vfill
 \newpage
 
 \section{Aufgabenstellung}
@@ -77,7 +75,7 @@ gegeben:
 100 \cdot c \in \mathbb{N} \qquad 100 \cdot d \in \mathbb{N} \]
 Die Lösung wird mit dem Rechner gesucht. Der dazu benutzte Algorithmus wird 
 dabei Schritt für Schritt verbessert. Als Programmiersprache wird Python 
-verwendet. Um die Berechnungen mit ganzzahlen durchführen zu können, werden 
+verwendet. Um die Berechnungen mit Ganzzahlen durchführen zu können, werden 
 die Preise in Rappen berechnet. Das führt jedoch dazu, dass die Multiplikation 
 der Zahlen einen um den Faktor $10^8$ grösseren Wert $(777000000)$ ergibt, da 
 jeder Faktor mit $100$ multipliziert ist. 
@@ -94,7 +92,7 @@ Mit den vier \verb!for! Schleifen werden alle vier Variebeln durchiteriert.
 Mit den \verb!if! Verzweigungen wird zuerst das Produkt und anschliessend die 
 Summe der Variabeln überprüft. Wenn beide korrekt sind, wird das Resultat 
 mit der Funktion \verb!printresult! ausgegeben. 
-\lstinputlisting{../source/raetsel_1.py}
+% \lstinputlisting{../source/raetsel_1.py}
 
 \subsection{Ein bisschen Algebra}
 Bei obigem Algorithmus wird jede Kombination überprüft. Mit den obigen 
@@ -102,7 +100,7 @@ Gleichungen kann jedoch eine der Variabeln eliminiert werden.
 \[ l = 777 - i - j - k \]
 \[ i \cdot j \cdot k \cdot (777 - i - j - k) = 777000000 \]
 Damit kann eine der Schleifen weggelassen und \verb!l! direkt berechnet werden. 
-\lstinputlisting{../source/raetsel_2.py}
+% \lstinputlisting{../source/raetsel_2.py}
 
 \subsection{Grenzen sinnvoll nutzen}
 Die kleinste der Zahlen kann höchstens ein Viertel der Summe sein. Daher muss 
@@ -110,45 +108,148 @@ eine der Variebeln nur bis da hin iteriert werden. Von den übrigen Zahlen muss
 die Kleinste kleiner ale ein Drittel der Summe sein. Von den übrigen beiden 
 Zahlen darf die Kleinere höchstens halb so gross wie die Hälfte Sein. Mit 
 diesen Regeln kann der Algorithmus weiter optimiert werden. 
-\lstinputlisting{../source/raetsel_3.py}
+% \lstinputlisting{../source/raetsel_3.py}
 
 \subsection{Teiler}
 Der grösste Teiler der Zahl $777000000$ ist $37$. Eine der Variabeln kann nun 
 in Schritten von 37 iteriert werden. 
-\lstinputlisting{../source/raetsel_4.py}
+% \lstinputlisting{../source/raetsel_4.py}
 
 \subsection{Primzahlzerlegung}
 Ein komplett anderer Ansatz basiert auf der Primzahlzerlegung. Die Zahl 
 $777000000$ ist aus den folgenden Primzahlen zusammengesetzt: 
 \[ 777000000 = 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 3 
-\cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 7 \cdot 35 \]
+\cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 7 \cdot 35 
+= 2^6 \cdot 3^1 \cdot 5^6 \cdot 7^1 \cdot 35^1 \]
+Die einzelnen Beträge müssen aus diesen Primzahlen zusammengesetzt sein. \\
+Für jede Primzahl wird nun eine Liste erzeugt. Die Liste beinhaltet vier Werte. 
+Jeder Wert ist dabei einem der vier Beträge zugeordnet. Der Wert in der Liste 
+entspricht dabei der Potenz der jeweiligen Primzahl beim entsprechenden Betrag. 
+\[ \begin{pmatrix}\text{Betrag 1}\\\text{Betrag 2}
+\\\text{Betrag 3}\\\text{Betrag 4}\end{pmatrix} \]
+Für Primzahlen, die nur einmal auftreten, wird eine Liste mit folgenden Werten 
+erzeugt: 
+\[ \begin{pmatrix}1\\0\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\1\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\1\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\0\\1\end{pmatrix} \qquad \]
+Für die anderen Primzahlen, die sechsmal auftreten wird eine zweite Liste 
+erzeugt. Dazu werden alle Kombinationen mit Zahlen von 0 bis 6 ausprobiert. 
+Diejenigen, die in Summe $6$ ergeben werden in der Liste gespeichert. 
+\[ \begin{pmatrix}0\\0\\0\\6\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\1\\5\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\2\\4\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\3\\3\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\4\\2\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\5\\1\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\6\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\1\\0\\5\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\1\\1\\4\end{pmatrix} \qquad 
+   \dots \qquad
+   \begin{pmatrix}6\\0\\0\\0\end{pmatrix} \qquad \]
+Durch die nun erzeugten Listen wird nun mit jeder Primzahl durchiteriert. Jede 
+korrekte Lösung wird ausgegeben. 
+% \lstinputlisting{../source/raetsel_5.py}
 
-\lstinputlisting{../source/raetsel_5.py}
+\subsection{Primzahlzerlegung mit Festlegung der grössten Primzahl}
+Eine Optimierung des obigen Algorithmus liegt darin, eine der Primzahlen auf 
+einen Betrag festzulegen. Damit kann eine Schleife gespart werden. 
+% \lstinputlisting{../source/raetsel_6.py}
+
+\subsection{Primzahlzerlegung mit optimierten Listen}
+Bei der Generierung der Listen für mehrfach vorhandene Primzahlen sind viele 
+Zahlenkombinationen mehrfach vorhanden. Die kann durch die abgrenzung der 
+Bereiche für die einzelnen Zahlenwerte in der Liste erfolgen. Wichtig ist 
+dabei, dass diese Optimierung nur bei einer Primzahl durchgeführt wird, da 
+ansonsten möglicherweise keine Lösung gefunden wird. 
+% \lstinputlisting{../source/raetsel_7.py}
+
+\subsection{Primzahlzerlegung mit manuell erstellten Listen}
+Die Liste kann auf eine kleine Anzahl von Kombinationen heruntergebrochen 
+werden: 
+\[ \begin{pmatrix}6\\0\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}5\\1\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}4\\2\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}4\\1\\1\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}3\\3\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}3\\2\\1\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}3\\1\\1\\1\end{pmatrix} \qquad 
+   \begin{pmatrix}2\\2\\2\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}2\\2\\1\\1\end{pmatrix} \qquad \]
+Diese Liste wird nun manuell eingegeben. 
+% \lstinputlisting{../source/raetsel_8.py}
 
 \section{Resultate}
 Das Resultat aller Algorithmen sind die Zahlen \verb!80!, \verb!125!, 
 \verb!222! und \verb!350! in verschiedenen Reihenfolgen. 
 Die einzelnen Produkte kosten also CHF 0.80, CHF 1.25, CHF 2.22 und CHF 3.50. 
 Sowohl die Summe als auch das Produkt dieser Werte ergibt 7.77 CHF. 
+\[ \begin{pmatrix}80\\125\\222\\350\end{pmatrix} \]
+
+\subsection{Laufzeit der Algorithmen}
+\begin{tabular}{@{}lc}
+\rowcolor{white}\textbf{Algorighmus}                                    
+  &\textbf{Zeit $[s]$} \\
+\rowcolor{lgray}Bruteforce                                              
+  & $145028$ \\
+\rowcolor{white}Ein bisschen Algebra                                    
+  & $239.8$ \\
+\rowcolor{lgray}Grenzen sinnvoll nutzen                                 
+  & $7.01$ \\
+\rowcolor{white}Teiler                                                  
+  & $0.428$ \\
+\rowcolor{lgray}Primzahlzerlegung                                       
+  & $1.01$ \\
+\rowcolor{white}Primzahlzerlegung mit Festlegung der grössten Primzahl  
+  & $0.216$ \\
+\rowcolor{lgray}Primzahlzerlegung mit optimierten Listen                
+  & $0.298$ \\
+\rowcolor{white}Primzahlzerlegung mit manuell erstellten Listen         
+  & $0.109$ \\
+
+\end{tabular}
+
 \clearpage
+
 \begin{appendices}
   \pagenumbering{roman}
-  \section{Listings}
 
+  \section{Listings}
+  \subsection{Bruteforce}
+  \lstinputlisting{../source/raetsel_1.py}
+  \subsection{Ein bisschen Algebra}
+  \lstinputlisting{../source/raetsel_2.py}
+  \subsection{Grenzen sinnvoll nutzen}
+  \lstinputlisting{../source/raetsel_3.py}
+  \subsection{Teiler}
+  \lstinputlisting{../source/raetsel_4.py}
+  \subsection{Primzahlzerlegung}
+  \lstinputlisting{../source/raetsel_5.py}
+  \subsection{Primzahlzerlegung mit Festlegung der grössten Primzahl}
+  \lstinputlisting{../source/raetsel_6.py}
+  \subsection{Primzahlzerlegung mit optimierten Listen}
+  \lstinputlisting{../source/raetsel_7.py}
+  \subsection{Primzahlzerlegung mit manuell erstellten Listen}
+  \lstinputlisting{../source/raetsel_8.py}  
+
+  \section{Resultate}
   \subsection{Bruteforce}
   \lstinputlisting{../source/result_1.txt}
-
   \subsection{Ein bisschen Algebra}
   \lstinputlisting{../source/result_2.txt}
-
   \subsection{Grenzen sinnvoll nutzen}
   \lstinputlisting{../source/result_3.txt}
-
   \subsection{Teiler}
   \lstinputlisting{../source/result_4.txt}
-
   \subsection{Primzahlzerlegung}
-  
+  \lstinputlisting{../source/result_5.txt}
+  \subsection{Primzahlzerlegung mit Festlegung der grössten Primzahl}
+  \lstinputlisting{../source/result_6.txt}
+  \subsection{Primzahlzerlegung mit optimierten Listen}
+  \lstinputlisting{../source/result_7.txt}
+  \subsection{Primzahlzerlegung mit manuell erstellten Listen}
+  \lstinputlisting{../source/result_8.txt}  
+
 \end{appendices}
 
 \end{document}
