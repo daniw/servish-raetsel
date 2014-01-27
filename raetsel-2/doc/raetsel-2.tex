@@ -67,7 +67,7 @@ Sam Servish
 \newpage
 
 \section{Lösungsansätze}
-Aus der Aufgabenstellung sind vier Variabeln gesucht, aber nur zwei Gleichungen 
+Aus der Aufgabenstellung sind vier Variablen gesucht, aber nur zwei Gleichungen 
 gegeben: 
 \[ a + b + c + d = 7.77 \]
 \[ a \cdot b \cdot c \cdot d = 7.77 \]
@@ -86,17 +86,17 @@ k \in \mathbb{N} \qquad l \in \mathbb{N} \]
 
 \subsection{Bruteforce}
 Zunächst werden für alle vier Produkte alle Möglichkeiten ausprobiert. Die 
-Variabeln \verb!i!, \verb!j!, \verb!k! und \verb!l! entsprechen dabei den 
+Variablen \verb!i!, \verb!j!, \verb!k! und \verb!l! entsprechen dabei den 
 Preisen der einzelnen Produkte. \\
-Mit den vier \verb!for! Schleifen werden alle vier Variebeln durchiteriert. 
+Mit den vier \verb!for! Schleifen werden alle vier Variablen durchiteriert. 
 Mit den \verb!if! Verzweigungen wird zuerst das Produkt und anschliessend die 
-Summe der Variabeln überprüft. Wenn beide korrekt sind, wird das Resultat 
+Summe der Variablen überprüft. Wenn beide korrekt sind, wird das Resultat 
 mit der Funktion \verb!printresult! ausgegeben. 
 % \lstinputlisting{../source/raetsel_1.py}
 
 \subsection{Ein bisschen Algebra}
 Bei obigem Algorithmus wird jede Kombination überprüft. Mit den obigen 
-Gleichungen kann jedoch eine der Variabeln eliminiert werden. 
+Gleichungen kann jedoch eine der Variablen eliminiert werden. 
 \[ l = 777 - i - j - k \]
 \[ i \cdot j \cdot k \cdot (777 - i - j - k) = 777000000 \]
 Damit kann eine der Schleifen weggelassen und \verb!l! direkt berechnet werden. 
@@ -104,14 +104,14 @@ Damit kann eine der Schleifen weggelassen und \verb!l! direkt berechnet werden.
 
 \subsection{Grenzen sinnvoll nutzen}
 Die kleinste der Zahlen kann höchstens ein Viertel der Summe sein. Daher muss 
-eine der Variebeln nur bis da hin iteriert werden. Von den übrigen Zahlen muss 
-die Kleinste kleiner ale ein Drittel der Summe sein. Von den übrigen beiden 
+eine der Variabel nur bis da hin iteriert werden. Von den übrigen Zahlen muss 
+die Kleinste kleiner als ein Drittel der Summe sein. Von den übrigen beiden 
 Zahlen darf die Kleinere höchstens halb so gross wie die Hälfte Sein. Mit 
 diesen Regeln kann der Algorithmus weiter optimiert werden. 
 % \lstinputlisting{../source/raetsel_3.py}
 
 \subsection{Teiler}
-Der grösste Teiler der Zahl $777000000$ ist $37$. Eine der Variabeln kann nun 
+Der grösste Teiler der Zahl $777000000$ ist $37$. Eine der Variablen kann nun 
 in Schritten von 37 iteriert werden. 
 % \lstinputlisting{../source/raetsel_4.py}
 
@@ -158,7 +158,7 @@ einen Betrag festzulegen. Damit kann eine Schleife gespart werden.
 
 \subsection{Primzahlzerlegung mit optimierten Listen}
 Bei der Generierung der Listen für mehrfach vorhandene Primzahlen sind viele 
-Zahlenkombinationen mehrfach vorhanden. Die kann durch die abgrenzung der 
+Zahlenkombinationen mehrfach vorhanden. Die kann durch die Abgrenzung der 
 Bereiche für die einzelnen Zahlenwerte in der Liste erfolgen. Wichtig ist 
 dabei, dass diese Optimierung nur bei einer Primzahl durchgeführt wird, da 
 ansonsten möglicherweise keine Lösung gefunden wird. 
@@ -188,7 +188,7 @@ Sowohl die Summe als auch das Produkt dieser Werte ergibt 7.77 CHF.
 
 \subsection{Laufzeit der Algorithmen}
 \begin{tabular}{@{}lc}
-\rowcolor{white}\textbf{Algorighmus}                                    
+\rowcolor{white}\textbf{Algorithmus}                                    
   &\textbf{Zeit $[s]$} \\
 \rowcolor{lgray}Bruteforce                                              
   & $145028$ \\
