@@ -1,0 +1,305 @@
+%coding:utf-8
+\documentclass[a4paper, 10pt, fleqn]{article}
+
+\usepackage{layout}
+
+\title{Lösung Servish Rätsel 2 -- Einkaufen mit Samantha}
+\author{daniw}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+
+\section{Aufgabenstellung}
+
+\subsection*{SERVISH RÄTSEL II -- Einkaufen mit Samantha}
+
+\subsubsection*{Turniermodus}
+Der Gewinner erhält 50\% des Betrages, der Zweitbeste 30\% und der drittbeste 20\%. 
+
+\subsubsection*{Bewerbung möglich bis}
+26. Januar 2014, 
+20:00 Uhr 
+
+\subsubsection*{Rücktritt möglich bis}
+28. Januar 2014, 
+20:00 Uhr 
+
+\subsubsection*{Projektabschluss}
+30. Januar 2014, 
+20:00 Uhr 
+
+\subsubsection*{Rubrik}
+Lifestyle \& Unterhaltung / Andere
+
+\subsubsection*{Zusammenfassung}
+Nachdem das erste, anspruchsvolle Rätsel erfolgreich gelöst wurde, präsentiert 
+euch Sam Servish ein neues Rätsel. 
+
+\subsubsection*{Beschreibung}
+Samantha Servish geht in einem Laden einkaufen. An der Kasse angekommen, legt 
+sie ihre vier Produkte aufs Band. "Das macht 7 Franken und 77 Rappen", sagt 
+die Verkäuferin. \\
+"'Ach nein, jetzt habe ich die Preise versehentlich multipliziert!"'. \\
+Nochmals tippt sie die vier Produkte und zählt diese nun zusammen. \\
+"Was für ein Zufall, das macht wieder 7 Franken und 77 Rappen!". \\\\
+%
+Wieviel kosten die einzelnen Produkte? \\
+(ein kleiner Tipp: Ein Rappen ist die kleinste Zahlungseinheit) \\\\
+%
+Viel Spass beim Lösen! \\
+Euer Sam Servish \\\\
+%
+Bewerbt euch für dieses "'Rätsel"' und reicht eure Lösung erst ein, nachdem Sam 
+euch beauftragt hat. Ansonsten ist eure Lösung für alle anderen Teilnehmer 
+ersichtlich. Der Auftrag wird im Turniermodus durchgeführt. 
+
+\subsubsection*{Projektowner}
+Sam Servish 
+
+\subsubsection*{Eingetragen am}
+16. Januar 2014 \\
+
+\newpage
+
+\section{Lösungsansätze}
+Aus der Aufgabenstellung sind vier Variablen gesucht, aber nur zwei Gleichungen 
+gegeben: 
+\[ a + b + c + d = 7.77 \]
+\[ a \cdot b \cdot c \cdot d = 7.77 \]
+\[ 100 \cdot a \in \mathbb{N} \qquad 100 \cdot b \in \mathbb{N} \qquad 
+100 \cdot c \in \mathbb{N} \qquad 100 \cdot d \in \mathbb{N} \]
+Die Lösung wird mit dem Rechner gesucht. Der dazu benutzte Algorithmus wird 
+dabei Schritt für Schritt verbessert. Als Programmiersprache wird Python 
+verwendet. Um die Berechnungen mit Ganzzahlen durchführen zu können, werden 
+die Preise in Rappen berechnet. Das führt jedoch dazu, dass die Multiplikation 
+der Zahlen einen um den Faktor $10^8$ grösseren Wert $(777000000)$ ergibt, da 
+jeder Faktor mit $100$ multipliziert ist. 
+\[ i + j + k + l = 777 \]
+\[ i \cdot j \cdot k \cdot l = 777000000 \]
+\[ i \in \mathbb{N} \qquad j \in \mathbb{N} \qquad 
+k \in \mathbb{N} \qquad l \in \mathbb{N} \]
+
+\subsection{Bruteforce}
+\label{sec:1}
+Zunächst werden für alle vier Produkte alle Möglichkeiten ausprobiert. Die 
+Variablen \verb!i!, \verb!j!, \verb!k! und \verb!l! entsprechen dabei den 
+Preisen der einzelnen Produkte. \\
+Mit den vier \verb!for! Schleifen werden alle vier Variablen durchiteriert. 
+Mit den \verb!if! Verzweigungen wird zuerst das Produkt und anschliessend die 
+Summe der Variablen überprüft. Wenn beide korrekt sind, wird das Resultat 
+mit der Funktion \verb!printresult! ausgegeben. \\
+Code: siehe Anhang \ref{list:1} Seite \pageref{list:1} \\
+Resultat: siehe Anhang \ref{res:1} Seite \pageref{res:1} 
+% \lstinputlisting{../source/raetsel_1.py}
+
+\subsection{Ein bisschen Algebra}
+\label{sec:2}
+Bei obigem Algorithmus wird jede Kombination überprüft. Mit den obigen 
+Gleichungen kann jedoch eine der Variablen eliminiert werden. 
+\[ l = 777 - i - j - k \]
+\[ i \cdot j \cdot k \cdot (777 - i - j - k) = 777000000 \]
+Damit kann eine der Schleifen weggelassen und \verb!l! direkt berechnet werden. \\
+Code: siehe Anhang \ref{list:2} Seite \pageref{list:2} \\
+Resultat: siehe Anhang \ref{res:2} Seite \pageref{res:2} 
+% \lstinputlisting{../source/raetsel_2.py}
+
+\subsection{Grenzen sinnvoll nutzen}
+\label{sec:3}
+Die kleinste der Zahlen kann höchstens ein Viertel der Summe sein. Daher muss 
+eine der Variabel nur bis da hin iteriert werden. Von den übrigen Zahlen muss 
+die Kleinste kleiner als ein Drittel der Summe sein. Von den übrigen beiden 
+Zahlen darf die Kleinere höchstens halb so gross wie die Hälfte Sein. Mit 
+diesen Regeln kann der Algorithmus weiter optimiert werden. \\
+Code: siehe Anhang \ref{list:3} Seite \pageref{list:3} \\
+Resultat: siehe Anhang \ref{res:3} Seite \pageref{res:3} 
+% \lstinputlisting{../source/raetsel_3.py}
+
+\subsection{Teiler}
+\label{sec:4}
+Der grösste Teiler der Zahl $777000000$ ist $37$. Eine der Variablen kann nun 
+in Schritten von 37 iteriert werden. \\
+Code: siehe Anhang \ref{list:4} Seite \pageref{list:4} \\
+Resultat: siehe Anhang \ref{res:4} Seite \pageref{res:4} 
+% \lstinputlisting{../source/raetsel_4.py}
+
+\subsection{Primzahlzerlegung}
+\label{sec:5}
+Ein komplett anderer Ansatz basiert auf der Primzahlzerlegung. Die Zahl 
+$777000000$ ist aus den folgenden Primzahlen zusammengesetzt: 
+\[ 777000000 = 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 2 \cdot 3 
+\cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 5 \cdot 7 \cdot 35 
+= 2^6 \cdot 3^1 \cdot 5^6 \cdot 7^1 \cdot 35^1 \]
+Die einzelnen Beträge müssen aus diesen Primzahlen zusammengesetzt sein. \\
+Für jede Primzahl wird nun eine Liste erzeugt. Die Liste beinhaltet vier Werte. 
+Jeder Wert ist dabei einem der vier Beträge zugeordnet. Der Wert in der Liste 
+entspricht dabei der Potenz der jeweiligen Primzahl beim entsprechenden Betrag. 
+\[ \begin{pmatrix}\text{Betrag 1}\\\text{Betrag 2}
+\\\text{Betrag 3}\\\text{Betrag 4}\end{pmatrix} \]
+Für Primzahlen, die nur einmal auftreten, wird eine Liste mit folgenden Werten 
+erzeugt: 
+\[ \begin{pmatrix}1\\0\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\1\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\1\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\0\\1\end{pmatrix} \qquad \]
+Für die anderen Primzahlen, die sechsmal auftreten wird eine zweite Liste 
+erzeugt. Dazu werden alle Kombinationen mit Zahlen von 0 bis 6 ausprobiert. 
+Diejenigen, die in Summe $6$ ergeben werden in der Liste gespeichert. 
+\[ \begin{pmatrix}0\\0\\0\\6\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\1\\5\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\2\\4\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\3\\3\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\4\\2\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\5\\1\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\0\\6\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\1\\0\\5\end{pmatrix} \qquad 
+   \begin{pmatrix}0\\1\\1\\4\end{pmatrix} \qquad 
+   \dots \qquad
+   \begin{pmatrix}6\\0\\0\\0\end{pmatrix} \qquad \]
+Durch die nun erzeugten Listen wird nun mit jeder Primzahl durchiteriert. Jede 
+korrekte Lösung wird ausgegeben. \\
+Code: siehe Anhang \ref{list:5} Seite \pageref{list:5} \\
+Resultat: siehe Anhang \ref{res:5} Seite \pageref{res:5} 
+% \lstinputlisting{../source/raetsel_5.py}
+
+\subsection{Primzahlzerlegung mit Festlegung der grössten Primzahl}
+\label{sec:6}
+Eine Optimierung des obigen Algorithmus liegt darin, eine der Primzahlen auf 
+einen Betrag festzulegen. Damit kann eine Schleife gespart werden. \\
+Code: siehe Anhang \ref{list:6} Seite \pageref{list:6} \\
+Resultat: siehe Anhang \ref{res:6} Seite \pageref{res:6} 
+% \lstinputlisting{../source/raetsel_6.py}
+
+\subsection{Primzahlzerlegung mit optimierten Listen}
+\label{sec:7}
+Bei der Generierung der Listen für mehrfach vorhandene Primzahlen sind viele 
+Zahlenkombinationen mehrfach vorhanden. Die kann durch die Abgrenzung der 
+Bereiche für die einzelnen Zahlenwerte in der Liste erfolgen. Wichtig ist 
+dabei, dass diese Optimierung nur bei einer Primzahl durchgeführt wird, da 
+ansonsten möglicherweise keine Lösung gefunden wird. \\
+Code: siehe Anhang \ref{list:7} Seite \pageref{list:7} \\
+Resultat: siehe Anhang \ref{res:7} Seite \pageref{res:7} 
+% \lstinputlisting{../source/raetsel_7.py}
+
+\subsection{Primzahlzerlegung mit manuell erstellten Listen}
+\label{sec:8}
+Die Liste kann auf eine kleine Anzahl von Kombinationen heruntergebrochen 
+werden: 
+\[ \begin{pmatrix}6\\0\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}5\\1\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}4\\2\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}4\\1\\1\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}3\\3\\0\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}3\\2\\1\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}3\\1\\1\\1\end{pmatrix} \qquad 
+   \begin{pmatrix}2\\2\\2\\0\end{pmatrix} \qquad 
+   \begin{pmatrix}2\\2\\1\\1\end{pmatrix} \qquad \]
+Diese Liste wird nun manuell eingegeben. \\
+Code: siehe Anhang \ref{list:8} Seite \pageref{list:8} \\
+Resultat: siehe Anhang \ref{res:8} Seite \pageref{res:8} 
+% \lstinputlisting{../source/raetsel_8.py}
+
+\clearpage
+\section{Resultate}
+Das Resultat aller Algorithmen sind die Zahlen \verb!80!, \verb!125!, 
+\verb!222! und \verb!350! in verschiedenen Reihenfolgen. 
+Die einzelnen Produkte kosten also CHF 0.80, CHF 1.25, CHF 2.22 und CHF 3.50. 
+Sowohl die Summe als auch das Produkt dieser Werte ergibt 7.77 CHF. 
+
+\subsection{Laufzeit der Algorithmen}
+Die Algorithmen wurden einzeln getestet und die Laufzeit bestimmt. Dabei wurde 
+folgenes System verwendet: 
+\begin{table}[h!]
+\begin{tabular}{@{}ll}
+Hardware        & HP ProBook 4740s \\
+Betriebssystem  & Windows 7 Professional 64 Bit \\
+                & Service Pack 1 \\
+Python          & Python 2.7.3 (default, Dec 18 2012, 13:50:09) \\
+                & [GCC 4.5.3] on cygwin
+\end{tabular}
+\end{table}
+\begin{table}[h!]
+\begin{tabular}{@{}lc}
+\rowcolor{white}\textbf{Algorithmus}                                    
+  &\textbf{Zeit $[s]$} \\
+\rowcolor{lgray}\nameref{sec:1}
+  & $145028$ \\
+\rowcolor{white}\nameref{sec:2}
+  & $239.8$ \\
+\rowcolor{lgray}\nameref{sec:3}
+  & $7.01$ \\
+\rowcolor{white}\nameref{sec:4}
+  & $0.428$ \\
+\rowcolor{lgray}\nameref{sec:5}
+  & $1.01$ \\
+\rowcolor{white}\nameref{sec:6}
+  & $0.216$ \\
+\rowcolor{lgray}\nameref{sec:7}
+  & $0.298$ \\
+\rowcolor{white}\nameref{sec:8}
+  & $0.109$ \\
+\end{tabular}
+\end{table}
+
+\clearpage
+
+\begin{appendices}
+  \pagenumbering{roman}
+
+  \section{Listings}
+  \subsection{Bruteforce}
+  \label{list:1}
+  \lstinputlisting{../source/raetsel_1.py}
+  \subsection{Ein bisschen Algebra}
+  \label{list:2}
+  \lstinputlisting{../source/raetsel_2.py}
+  \subsection{Grenzen sinnvoll nutzen}
+  \label{list:3}
+  \lstinputlisting{../source/raetsel_3.py}
+  \subsection{Teiler}
+  \label{list:4}
+  \lstinputlisting{../source/raetsel_4.py}
+  \subsection{Primzahlzerlegung}
+  \label{list:5}
+  \lstinputlisting{../source/raetsel_5.py}
+  \subsection{Primzahlzerlegung mit Festlegung der grössten Primzahl}
+  \label{list:6}
+  \lstinputlisting{../source/raetsel_6.py}
+  \subsection{Primzahlzerlegung mit optimierten Listen}
+  \label{list:7}
+  \lstinputlisting{../source/raetsel_7.py}
+  \subsection{Primzahlzerlegung mit manuell erstellten Listen}
+  \label{list:8}
+  \lstinputlisting{../source/raetsel_8.py}  
+
+  \section{Resultate}
+  \subsection{Bruteforce}
+  \label{res:1}
+  \lstinputlisting{../source/result_1.txt}
+  \subsection{Ein bisschen Algebra}
+  \label{res:2}
+  \lstinputlisting{../source/result_2.txt}
+  \subsection{Grenzen sinnvoll nutzen}
+  \label{res:3}
+  \lstinputlisting{../source/result_3.txt}
+  \subsection{Teiler}
+  \label{res:4}
+  \lstinputlisting{../source/result_4.txt}
+  \subsection{Primzahlzerlegung}
+  \label{res:5}
+  \lstinputlisting{../source/result_5.txt}
+  \subsection{Primzahlzerlegung mit Festlegung der grössten Primzahl}
+  \label{res:6}
+  \lstinputlisting{../source/result_6.txt}
+  \subsection{Primzahlzerlegung mit optimierten Listen}
+  \label{res:7}
+  \lstinputlisting{../source/result_7.txt}
+  \subsection{Primzahlzerlegung mit manuell erstellten Listen}
+  \label{res:8}
+  \lstinputlisting{../source/result_8.txt}  
+
+\end{appendices}
+
+\end{document}
