@@ -73,5 +73,85 @@ Sam Servish
 
 \newpage
 
+\section{Idee des Lösungsverfahrens}
+Das folgende Lösungsverfahren beruht auf dem Ausschlussprinzip. Es wird eine 
+Liste mit allen möglichen Kombinationen erzeugt, welche Schritt für Schritt 
+reduziert wird. \\
+Siehe auch: \\
+\url{http://mchouza.wordpress.com/2011/05/31/
+solving-the-product-sum-difference-riddle/}. 
 
+\section{Lösungsverfahren Schritt für Schritt}
+Aus der Aufgabenstellung ist folgendes gegeben: 
+\begin{itemize}
+\item die Zahlen sind ganzzahlig liegen zwischen 1 und 1000
+\item es könnten auch beide Zahlen gleich sein
+\item Samantha erfährt die Summe,
+\item Stan kennt die Differenz,
+\item und Sam weiss das Produkt der beiden Zahlen
+\end{itemize}
+
+Als Erstes wird eine Liste mit allen möglichen Kombinationen generiert. Dabei 
+ist die zweite Zahl immer grösser oder gleich der ersten Zahl. Damit werden 
+Kombinationen, welche durch das Vertauschen der Zahlen einer anderen 
+Kombination entstehen nur einmal berücksichtigt. 
+\lstinputlisting[firstline=1, lastline=8]{../source/raetsel-3.py}
+
+\textbf{Sam: }\emph{Ich weiss die beiden Zahlen nicht. } \\
+Da Sam die Zahlen nicht kennt, muss es mehrere Kombinationen geben, die das 
+Produkt ergeben, das Sam hat. \\
+Dazu wird eine Liste für alle Produkte generiert. Anschliessend wird gezählt, 
+wie oft jedes Produkt in den Kombinationen vorkommt. Es kommen nun nur noch die 
+Kombinationen in Frage, bei welchen mehrere Kombinationen das selbe Produkt 
+haben. 
+\lstinputlisting[firstline=9, lastline=21]{../source/raetsel-3.py}
+
+\textbf{Samantha: }\emph{Das wusste ich doch schon. } \\
+Da Samantha wusste, dass Sam keine der Zahlen kannte, muss sie eine Summe 
+erhalten haben, zu der es nur Kombinationen gibt, die Produkte geben, zu denen 
+es mehrere Kombinationen gibt. Also kann Samantha zu jeder mit ihrer Summe 
+möglichen Kombination prüfen, ob es nur eine Kombination mit dem selben Produkt 
+gibt. 
+\lstinputlisting[firstline=22, lastline=35]{../source/raetsel-3.py}
+
+\textbf{Sam: }\emph{Ich kenne die Zahlen jetzt. } \\
+Jetzt muss die Kombination eine der verbleibenden Kombinationen sein, zu dessen 
+Produkt es keine zweite Kombination gibt. 
+\lstinputlisting[firstline=36, lastline=48]{../source/raetsel-3.py}
+
+\textbf{Samantha: }\emph{Ich auch. } \\
+Zudem darf es zur Summe des Produkts nur eine Kombination geben. 
+\lstinputlisting[firstline=49, lastline=61]{../source/raetsel-3.py}
+
+\textbf{Stan: }\emph{Ich noch nicht. Eine Zahl kann ich vermuten. 
+Sicher bin ich mir aber nicht.}
+Stan kennt die Zahlen nicht. Das bedeutet, dass es zu seiner Differenz mehrere 
+Kombinationen gibt. Da er eine der Zahlen vermuten kann kommt diese anscheinend 
+häufig vor. Da er die Zahl vermuten kann, sie jedoch nicht kennt, gibt es noch 
+mindestens eine weitere Kombination in welcher die Zahl nicht vorkommt. \\
+Daher können alle Kombinationen ausgeschlossen werden, die Differenzen ergeben, 
+die weniger als drei mal vorkommen. Nun werden alle noch vorkommenden 
+Differenzen in der Liste \verb?diffs? gespeichert. Anschliessend werden in der 
+Liste \verb?fdiff? alle Differenzen und die zugehörigen Kombinationen 
+gespeichert. Mehrfach vorhandene Zahlen werden nun in die Liste 
+\verb?gelements? gespeichert. Anschliessend werden Differenzen, in denen es 
+nicht mehrfach vorhandene Zahlen gibt verworfen. 
+\lstinputlisting[firstline=62, lastline=104]{../source/raetsel-3.py}
+
+\textbf{Sam: }\emph{Deine Vermutung ist falsch. } \\
+nun werden alle Kombinationen mit mehrfach vorhandenen Zahlen verworfen. 
+\lstinputlisting[firstline=105, lastline=110]{../source/raetsel-3.py}
+
+\textbf{Stan: }\emph{Jetzt kenne ich sie auch. }
+Da jetzt nur noch eine Kombination übrig ist, kann diese ausgegeben werden. 
+Falls zu diesem Zeitpunkt noch mehrere Zahlen übrig wären, könnten diese wieder 
+über die Anzahl Kombinationen für jede Differenz aussortiert werden. 
+\lstinputlisting[firstline=111, lastline=115]{../source/raetsel-3.py}
+
+\section{Lösung}
+Die Rückgabe aus obigem Python Skript lautet: 
+\begin{lstlisting}
+[(64, 73)]
+\end{lstlisting}
+Somit sind 64 und 73 die beiden Zahlen. 
 \end{document}
