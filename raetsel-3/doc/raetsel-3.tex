@@ -96,7 +96,7 @@ Als Erstes wird eine Liste mit allen möglichen Kombinationen generiert. Dabei
 ist die zweite Zahl immer grösser oder gleich der ersten Zahl. Damit werden 
 Kombinationen, welche durch das Vertauschen der Zahlen einer anderen 
 Kombination entstehen nur einmal berücksichtigt. 
-\lstinputlisting[firstline=1, lastline=8]{../source/raetsel-3.py}
+\lstinputlisting[firstline=1, lastline=8, firstnumber=1]{../source/raetsel-3.py}
 
 \textbf{Sam: }\emph{Ich weiss die beiden Zahlen nicht. } \\
 Da Sam die Zahlen nicht kennt, muss es mehrere Kombinationen geben, die das 
@@ -105,7 +105,7 @@ Dazu wird eine Liste für alle Produkte generiert. Anschliessend wird gezählt,
 wie oft jedes Produkt in den Kombinationen vorkommt. Es kommen nun nur noch die 
 Kombinationen in Frage, bei welchen mehrere Kombinationen das selbe Produkt 
 haben. 
-\lstinputlisting[firstline=9, lastline=21]{../source/raetsel-3.py}
+\lstinputlisting[firstline=9, lastline=21, firstnumber=9]{../source/raetsel-3.py}
 
 \textbf{Samantha: }\emph{Das wusste ich doch schon. } \\
 Da Samantha wusste, dass Sam keine der Zahlen kannte, muss sie eine Summe 
@@ -113,16 +113,16 @@ erhalten haben, zu der es nur Kombinationen gibt, die Produkte geben, zu denen
 es mehrere Kombinationen gibt. Also kann Samantha zu jeder mit ihrer Summe 
 möglichen Kombination prüfen, ob es nur eine Kombination mit dem selben Produkt 
 gibt. 
-\lstinputlisting[firstline=22, lastline=35]{../source/raetsel-3.py}
+\lstinputlisting[firstline=22, lastline=35, firstnumber=22]{../source/raetsel-3.py}
 
 \textbf{Sam: }\emph{Ich kenne die Zahlen jetzt. } \\
 Jetzt muss die Kombination eine der verbleibenden Kombinationen sein, zu dessen 
 Produkt es keine zweite Kombination gibt. 
-\lstinputlisting[firstline=36, lastline=48]{../source/raetsel-3.py}
+\lstinputlisting[firstline=36, lastline=48, firstnumber=36]{../source/raetsel-3.py}
 
 \textbf{Samantha: }\emph{Ich auch. } \\
 Zudem darf es zur Summe des Produkts nur eine Kombination geben. 
-\lstinputlisting[firstline=49, lastline=61]{../source/raetsel-3.py}
+\lstinputlisting[firstline=49, lastline=61, firstnumber=49]{../source/raetsel-3.py}
 
 \textbf{Stan: }\emph{Ich noch nicht. Eine Zahl kann ich vermuten. 
 Sicher bin ich mir aber nicht.} \\
@@ -138,17 +138,17 @@ Liste \verb?fdiff? alle Differenzen und die zugehörigen Kombinationen
 gespeichert. Mehrfach vorhandene Zahlen werden nun in die Liste 
 \verb?gelements? gespeichert. Anschliessend werden Differenzen, in denen es 
 nicht mehrfach vorhandene Zahlen gibt verworfen. 
-\lstinputlisting[firstline=62, lastline=104]{../source/raetsel-3.py}
+\lstinputlisting[firstline=62, lastline=104, firstnumber=62]{../source/raetsel-3.py}
 
 \textbf{Sam: }\emph{Deine Vermutung ist falsch. } \\
 Nun werden alle Kombinationen mit mehrfach vorhandenen Zahlen verworfen. 
-\lstinputlisting[firstline=105, lastline=110]{../source/raetsel-3.py}
+\lstinputlisting[firstline=105, lastline=110, firstnumber=105]{../source/raetsel-3.py}
 
 \textbf{Stan: }\emph{Jetzt kenne ich sie auch. }
 Da jetzt nur noch eine Kombination übrig ist, kann diese ausgegeben werden. 
 Falls zu diesem Zeitpunkt noch mehrere Zahlen übrig wären, könnten diese wieder 
 über die Anzahl Kombinationen für jede Differenz aussortiert werden. 
-\lstinputlisting[firstline=111, lastline=115]{../source/raetsel-3.py}
+\lstinputlisting[firstline=111, lastline=115, firstnumber=111]{../source/raetsel-3.py}
 
 \section{Lösung}
 Die Rückgabe aus obigem Python Skript lautet: 
@@ -156,4 +156,15 @@ Die Rückgabe aus obigem Python Skript lautet:
 [(64, 73)]
 \end{lstlisting}
 Somit sind 64 und 73 die beiden Zahlen. 
+
+\clearpage
+
+\begin{appendices}
+  \pagenumbering{roman}
+
+  \section{Listing}
+  \lstinputlisting{../source/raetsel-3.py}
+
+\end{appendices}
+
 \end{document}
