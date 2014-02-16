@@ -43,20 +43,21 @@ zwei Zahlen unter den folgenden Bedingungen zu finden:
 \begin{itemize}
 \item die Zahlen sind ganzzahlig liegen zwischen 1 und 1000
 \item es könnten auch beide Zahlen gleich sein
-\item Samantha erfährt die Summe,
-\item Stan kennt die Differenz,
+\item Samantha erfährt die Summe
+\item Stan kennt die Differenz
 \item und Sam weiss das Produkt der beiden Zahlen
 \end{itemize}
 Anschliessend entwickelt sich das folgende Gespräch:
 \\\\
 \begin{tabular}{ll}
-Sam:      & "`Ich weiss die beiden Zahlen nicht."' \\
-Samantha: & "`Das wusste ich doch schon."' \\
-Sam:      & "`Ich kenne die Zahlen jetzt."' \\
-Samantha: & "`Ich auch."' \\
-Stan:     & "`Ich noch nicht. Eine Zahl kann ich vermuten. Sicher bin ich mir aber nicht."' \\
-Sam:      & "`Deine Vermutung ist falsch."' \\
-Stan:     & "`Jetzt kenne ich sie auch."' \\
+Sam:      & "`Ich weiss die beiden Zahlen nicht. "' \\
+Samantha: & "`Das wusste ich doch schon. "' \\
+Sam:      & "`Ich kenne die Zahlen jetzt. "' \\
+Samantha: & "`Ich auch. "' \\
+Stan:     & "`Ich noch nicht. Eine Zahl kann ich vermuten. Sicher bin ich mir 
+              aber nicht. "' \\
+Sam:      & "`Deine Vermutung ist falsch. "' \\
+Stan:     & "`Jetzt kenne ich sie auch. "' \\
 \end{tabular}
 \\\\
 Welches sind die beiden Zahlen?
@@ -124,11 +125,12 @@ Zudem darf es zur Summe des Produkts nur eine Kombination geben.
 \lstinputlisting[firstline=49, lastline=61]{../source/raetsel-3.py}
 
 \textbf{Stan: }\emph{Ich noch nicht. Eine Zahl kann ich vermuten. 
-Sicher bin ich mir aber nicht.}
+Sicher bin ich mir aber nicht.} \\
 Stan kennt die Zahlen nicht. Das bedeutet, dass es zu seiner Differenz mehrere 
-Kombinationen gibt. Da er eine der Zahlen vermuten kann kommt diese anscheinend 
-häufig vor. Da er die Zahl vermuten kann, sie jedoch nicht kennt, gibt es noch 
-mindestens eine weitere Kombination in welcher die Zahl nicht vorkommt. \\
+Kombinationen gibt. Da er eine der Zahlen vermuten kann, kommt diese 
+anscheinend häufig vor. Da er die Zahl vermuten kann, sie jedoch nicht kennt, 
+gibt es noch mindestens eine weitere Kombination, in welcher die Zahl nicht 
+vorkommt. \\
 Daher können alle Kombinationen ausgeschlossen werden, die Differenzen ergeben, 
 die weniger als drei mal vorkommen. Nun werden alle noch vorkommenden 
 Differenzen in der Liste \verb?diffs? gespeichert. Anschliessend werden in der 
@@ -139,7 +141,7 @@ nicht mehrfach vorhandene Zahlen gibt verworfen.
 \lstinputlisting[firstline=62, lastline=104]{../source/raetsel-3.py}
 
 \textbf{Sam: }\emph{Deine Vermutung ist falsch. } \\
-nun werden alle Kombinationen mit mehrfach vorhandenen Zahlen verworfen. 
+Nun werden alle Kombinationen mit mehrfach vorhandenen Zahlen verworfen. 
 \lstinputlisting[firstline=105, lastline=110]{../source/raetsel-3.py}
 
 \textbf{Stan: }\emph{Jetzt kenne ich sie auch. }
