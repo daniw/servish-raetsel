@@ -63,15 +63,24 @@ Sam Servish
 \newpage
 
 \section{Lösung}
+Als erstes kann die Lösung gesucht werden, indem das Zufallsexperiment direkt 
+wiederholt wird. Dabei werden Zufallszahlen zwischen 0 und 1 erzeugt. Diese 
+werden so lange aufaddiert, bis die Summe grösser als 1 ist. Dabei werden die 
+Anzahl dafür notwendiger Versuche gezählt. Das wird sehr oft wiederholt. 
+Anschliessend wird der Mittelwert der benötigten Versuche berechnet. 
+\lstinputlisting{../source/raetsel-4.py}
+Die Rückgabe des obigen Programms ist $2.7182882564$. Dies entspricht der 
+Eulerschen Zahl $e$. Doch wi kommt das? 
+\\
 
 \clearpage
 
-\begin{appendices}
-  \pagenumbering{roman}
+% \begin{appendices}
+%   \pagenumbering{roman}
 
-  \section{Listing}
+%   \section{Listing}
 %   \lstinputlisting{../source/raetsel-4.py}
 
-\end{appendices}
+% \end{appendices}
 
 \end{document}
