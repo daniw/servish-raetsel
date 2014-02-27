@@ -69,11 +69,36 @@ werden so lange aufaddiert, bis die Summe grösser als 1 ist. Dabei werden die
 Anzahl dafür notwendiger Versuche gezählt. Das wird sehr oft wiederholt. 
 Anschliessend wird der Mittelwert der benötigten Versuche berechnet. 
 \lstinputlisting{../source/raetsel-4.py}
-Die Rückgabe des obigen Programms ist $2.7182882564$. Dies entspricht der 
-Eulerschen Zahl $e$. Doch wi kommt das? 
-\\
+Die Rückgabe des obigen Programms ist $2.7182882564$. Dies entspricht 
+näherungsweise der Eulerschen Zahl $e$. Doch wie kommt das? 
 
-\clearpage
+\newpage
+\subsection{Theoretische Betrachtung}
+Da jede Zahl einen statistisch unabhängigen Versuch darstellt, kann sie als 
+uniform verteilt betrachtet werden. Daher ist auch die Summe der Zahlen 
+uniform verteilt. Die Wahrscheinlichkeit, dass eine Uniform zwischen $a$ und 
+$b$ verteile Zahl $z$ kleiner als die Quantile $q$ ist, kann wie folgt
+beschrieben werden:  
+\[ P(z < q) = \frac{q - a}{b - a} \]
+In obiger Gleichung können nun die beiden Grenzen ($0$ und $n$) und die 
+Quantile ($1$) eingesetzt werden. 
+\[ P(z < 1) = \frac{1 - 0}{n - 0} = \frac{1}{n} \]
+Das entspricht der Wahrscheinlichkeit, dass noch eine Zahl gezogen werden muss. 
+Da bei Versuchen, die bereits grösser als $1$ sind keine weiteren Zahlen mehr 
+gezogen werden, beträgt die Wahrscheinlichkeit, dass die Summe $s$ beim n-ten 
+Ziehen einer Zahl grösser als 1 wird das Produkt aus den jeweiligen 
+Wahrscheinlichkeiten bis n. 
+\[ P =  \frac{1}{1} \cdot \frac{1}{2} \cdot \frac{1}{3} \cdot \frac{1}{4} \cdot 
+\ldots \cdot \frac{1}{n} 
+= \frac{1}{1 \cdot 2 \cdot 3 \cdot 4 \cdot \ldots \cdot n} = \frac{1}{n!} \]
+Nun müssen die Wahrscheinlichkeiten für jede Anzahl Versuche aufsummiert 
+werden. 
+\[ \frac{1}{0!} + \frac{1}{1!} + \frac{1}{2!} + \frac{1}{3!} + \ldots 
++ \frac{1}{n!} = \sum\limits_{0}^{\infty} \left( \frac{1}{n!} \right) \]
+Das ist die Definition von $e$. 
+\[ \sum\limits_{0}^{\infty} \left( \frac{1}{n!} \right) = e \]
+
+% \clearpage
 
 % \begin{appendices}
 %   \pagenumbering{roman}
